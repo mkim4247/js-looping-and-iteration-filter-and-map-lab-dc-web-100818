@@ -1,31 +1,36 @@
 // Code your solution here:
 
-function driversWithRevenueOver(arr, num) {
-   return arr.filter(function(driver) {
-    return driver.revenue > num;
+function driversWithRevenueOver(driver, revenue) {
+  return driver.filter(function(x) {
+    return x.revenue > revenue;
   });
 }
 
-function driverNamesWithRevenueOver(arr, num) {
-  let drivers = arr.filter(function(driver) {
-    return driver.revenue > num;
-  });
-  return drivers.map(function(driver){
-    return driver.name;
+function driverNamesWithRevenueOver(driver, revenue) {
+  return driver.filter(x => x.revenue > revenue).map(y => y.name);
+}
+//this problem uses pointers which is for the newer version of JS
+
+function exactMatch(driver, object) {
+  return driver.filter(function(driverObject) {
+    for (const key in driverObject) {
+      if (object[key] === driverObject[key])
+      return true;
+    } 
   });
 }
+
+function exactMatchToList(driver, object) {
+  const filterDrivers = driver.filter(function(driverObject) {
+    for (const key in driverObject) {
+      if (object[key] === driverObject[key])
+      return true;
+    }
+  })
+  return filterDrivers.map(function(filtObj) {
+    return filtObj.name;
+  }) 
+  //currently i have the an array of the driver objects that match the object argument
+  //create a new array with just the names of those matching objects by using the map function
   
-function exactMatch(arr, obj) {
-  return arr.filter(function(driver){
-    return driver[Object.keys(obj)[0]] === Object.values(obj)[0]
-  });
-}
-
-function exactMatchToList(arr, obj) {
-  let drivers = arr.filter(function(driver) {
-    return driver[Object.keys(obj)[0]] === Object.values(obj)[0]
-  });
-  return drivers.map(function(driver){
-    return driver.name;
-  });
 }
